@@ -2,7 +2,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from .models import Category, Products, Review
-from .serializers import CategorySerializer, ProductsSerializer, ReviewSerializer
+from .serializers import CategorySerializer, ProductsSerializer, ReviewSerializer, RatingReviewSerializer
 
 
 @api_view(['GET'])
@@ -27,8 +27,16 @@ def products_list_api_view(request):
     products_json = ProductsSerializer(instance=products_list, many=True).data
     return Response(data=products_json, status=status.HTTP_200_OK)
 
+
 @api_view(["GET"])
-def products_detail_api_view(request, id):
+def products_review_list_api_view(request):
+    products_review_list = Products.objects.all()
+    products_review_json = RatingReviewSerializer(instance=products_review_list, many=True).data
+    return Response(data=products_review_json, status=status.HTTP_200_OK)
+
+
+@api_view(["GET"])
+def products_detail_api_view(reqauest, id):
     try:
         item = Products.objects.get(id=id)
     except Products.DoesNotExist:

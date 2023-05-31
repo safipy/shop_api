@@ -12,6 +12,7 @@ urlpatterns = [
     path('api/v1/products/<int:id>/', views.products_detail_api_view),
     path('api/v1/review/', views.review_list_api_view),
     path('api/v1/review/<int:id>/', views.review_detail_api_view),
+    path('api/v1/products/review/', views.products_review_list_api_view),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
