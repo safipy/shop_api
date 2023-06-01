@@ -12,11 +12,14 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+
 class Products(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField()
     price = models.BooleanField(default=0)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="products", null=True)
+    category = models.ForeignKey(
+        Category, on_delete=models.CASCADE, related_name="products", null=True
+    )
 
     @property
     def rating(self):
@@ -29,12 +32,13 @@ class Products(models.Model):
     def __str__(self):
         return self.title
 
+
 class Review(models.Model):
     text = models.TextField()
-    products = models.ForeignKey(Products, on_delete=models.CASCADE, related_name="reviews", null=True)
-    stars = models.IntegerField(choices=[(i, i) for i in range(1,6)], null=True)
+    products = models.ForeignKey(
+        Products, on_delete=models.CASCADE, related_name="reviews", null=True
+    )
+    stars = models.IntegerField(choices=[(i, i) for i in range(1, 6)], null=True)
 
     def __str__(self):
         return self.text
-
-

@@ -5,29 +5,40 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('product', '0001_initial'),
+        ("product", "0001_initial"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='review',
-            name='producrs',
+            model_name="review",
+            name="producrs",
         ),
         migrations.AddField(
-            model_name='review',
-            name='products',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='reviews', to='product.products'),
+            model_name="review",
+            name="products",
+            field=models.ForeignKey(
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="reviews",
+                to="product.products",
+            ),
         ),
         migrations.AddField(
-            model_name='review',
-            name='stars',
-            field=models.IntegerField(choices=[(1, 1), (2, 2), (3, 3), (4, 4), (5, 5)], null=True),
+            model_name="review",
+            name="stars",
+            field=models.IntegerField(
+                choices=[(1, 1), (2, 2), (3, 3), (4, 4), (5, 5)], null=True
+            ),
         ),
         migrations.AlterField(
-            model_name='products',
-            name='category',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='products', to='product.category'),
+            model_name="products",
+            name="category",
+            field=models.ForeignKey(
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="products",
+                to="product.category",
+            ),
         ),
     ]

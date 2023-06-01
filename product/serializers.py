@@ -22,14 +22,7 @@ class ReviewSerializer(serializers.ModelSerializer):
 
 class RatingReviewSerializer(serializers.ModelSerializer):
     reviews = ReviewSerializer(many=True)
+
     class Meta:
         model = Products
         fields = "title rating reviews".split()
-
-
-
-
-
-
-
-
