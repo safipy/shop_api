@@ -13,6 +13,8 @@ urlpatterns = [
     path('api/v1/review/', views.review_list_api_view),
     path('api/v1/review/<int:id>/', views.review_detail_api_view),
     path('api/v1/products/review/', views.products_review_list_api_view),
+    path('api/v1/tags/', views.tag_list_api_view),
+    path('api/v1/tags/<int:id>/', views.tag_detail_api_view),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

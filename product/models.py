@@ -1,6 +1,13 @@
 from django.db import models
 
 
+class Tag(models.Model):
+    name = models.CharField(max_length=100, null=True)
+
+    def __str__(self):
+        return self.name
+
+
 class Category(models.Model):
     name = models.CharField(max_length=100)
 
@@ -20,6 +27,7 @@ class Products(models.Model):
     category = models.ForeignKey(
         Category, on_delete=models.CASCADE, related_name="products", null=True
     )
+    tags = models.ManyToManyField(Tag, blank=True)
 
     @property
     def rating(self):
